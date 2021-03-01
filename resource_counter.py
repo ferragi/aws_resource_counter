@@ -3,7 +3,7 @@ import boto3
 from botocore.exceptions import ClientError
 import json
 
-CUSTOMER_FILE_NAME = "customer_assessment.config.json"
+CUSTOMER_FILE_NAME = "customer_assessment.darede.config.json"
 SERVICES_FILE_NAME = "services.config.json"
 
 def get_customer_config():

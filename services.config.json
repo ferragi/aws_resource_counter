@@ -125,6 +125,44 @@
       "CLIENT_FUNCTION": "describe_clusters",
       "COUNTED_RESOURCE_KEY": "Clusters",
       "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "Amazon CloudSearch",
+      "BOTO3_CLIENT": "cloudsearch",
+      "CLIENT_FUNCTION": "list_domain_names",
+      "COUNTED_RESOURCE_KEY": "DomainNames",
+      "CLIENT_ENDPOINT_SCOPE": "regional",
+      "EXCEPTION_REGION_LIST": ["us-east-2"]
+    },
+    { "NAME": "AWS CloudTrail",
+      "BOTO3_CLIENT": "cloudtrail",
+      "CLIENT_FUNCTION": "list_trails",
+      "COUNTED_RESOURCE_KEY": "Trails",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "Amazon CloudWatch",
+      "BOTO3_CLIENT": "cloudwatch",
+      "CLIENT_FUNCTION": "list_dashboards",
+      "COUNTED_RESOURCE_KEY": "DashboardEntries",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "AWS CodeArtifact",
+      "BOTO3_CLIENT": "codeartifact",
+      "CLIENT_FUNCTION": "list_repositories",
+      "COUNTED_RESOURCE_KEY": "repositories",
+      "CLIENT_ENDPOINT_SCOPE": "regional",
+      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+    },
+    { "NAME": "AWS CodeBuild",
+      "BOTO3_CLIENT": "codebuild",
+      "CLIENT_FUNCTION": "list_projects",
+      "COUNTED_RESOURCE_KEY": "projects",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "AWS CodeCommit",
+      "BOTO3_CLIENT": "codecommit",
+      "CLIENT_FUNCTION": "list_repositories",
+      "COUNTED_RESOURCE_KEY": "repositories",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
     }
   ]
 }
