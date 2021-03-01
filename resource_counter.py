@@ -3,13 +3,11 @@ import boto3
 from botocore.exceptions import ClientError
 import json
 
-
-def get_customer_config(){
+def get_customer_config():
     customer_file = open("customer_assessment.config.json")
     customer_config = json.loads(customer_file.read())
     customer_file.close()
     return customer_config
-}
 
 customer_config = get_customer_config()
 
@@ -23,7 +21,7 @@ def generate_account_list():
 
     if 'OTHER_CUSTOMER_ACCT_LIST' in customer_config:
         for i in range(0, len(customer_config['OTHER_CUSTOMER_ACCT_LIST'])):
-            account_list.append(customer_config['OTHER_CUSTOMER_ACCT_LIST'][i]['acct_Id'])
+            account_list.append(customer_config['OTHER_CUSTOMER_ACCT_LIST'][i]['acct_id'])
 
     return account_list
 
