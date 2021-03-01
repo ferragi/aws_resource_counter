@@ -1,0 +1,15 @@
+{
+  "CUSTOMER_NAME": "SomeName",
+  "CUSTOMER_ORGANIZATION_ACCT": "012345678912",
+  "OTHER_CUSTOMER_ACCT_LIST": [
+    {"name": "SomeOtherAcct1", "acct_id": "012345678913"},
+    {"name": "SomeOtherAcct2", "acct_id": "012345678914"},
+    {"name": "SomeOtherAcct3", "acct_id": "012345678915"}
+  ],
+  "ROLE_NAME": "unlimited_jedi_power",
+  "ASSESSMENT_REGION_COVERAGE_LIST": [
+    "us-east-1",
+    "us-east-2",
+    "sa-east-1"
+  ]
+}

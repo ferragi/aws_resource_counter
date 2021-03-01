@@ -3,21 +3,26 @@ import boto3
 from botocore.exceptions import ClientError
 import json
 
-customer_file = open("customer_assessment_config.json")
-customer_config = json.loads(customer_file.read())
-customer_file.close()
+
+def get_customer_config(){
+    customer_file = open("customer_assessment.config.json")
+    customer_config = json.loads(customer_file.read())
+    customer_file.close()
+}
+
+customer_config = get_customer_config()
 
 def generate_account_list():
 
-    if 'Customer_Organization_Acct' not in customer_config:
-        sys.exit('\n[Fatal Err] Parameter Customer_Organization_Acct is mandatory in customer configuration.')
+    if 'CUSTOMER_ORGANIZATION_ACCT' not in customer_config:
+        sys.exit('\n[Fatal Err] Parameter CUSTOMER_ORGANIZATION_ACCT is mandatory in customer configuration.')
 
     account_list = []
-    account_list.append(customer_config['Customer_Organization_Acct'])
+    account_list.append(customer_config['CUSTOMER_ORGANIZATION_ACCT'])
 
-    if 'Other_Customer_Acct_List' in customer_config:
-        for i in range(0, len(customer_config['Other_Customer_Acct_List'])):
-            account_list.append(customer_config['Other_Customer_Acct_List'][i]['Acct_Id'])
+    if 'OTHER_CUSTOMER_ACCT_LIST' in customer_config:
+        for i in range(0, len(customer_config['OTHER_CUSTOMER_ACCT_LIST'])):
+            account_list.append(customer_config['OTHER_CUSTOMER_ACCT_LIST'][i]['acct_Id'])
 
     return account_list
 
@@ -27,11 +32,11 @@ def switch_role(acct_id):
 
     try:
         response = client.assume_role(
-            RoleArn='arn:aws:iam::' + str(acct_id) + ':role/' + str(customer_config['Role_Name']),
-            RoleSessionName=str(customer_config['Role_Name']) + '-Resource_Counter'
+            RoleArn='arn:aws:iam::' + str(acct_id) + ':role/' + str(customer_config['ROLE_NAME']),
+            RoleSessionName=str(customer_config['ROLE_NAME']) + '-Resource_Counter'
         )
     except ClientError:
-        print('\n[Err] Could switch role on acct ' + str(acct_id) + ' for role name '+ str(customer_config['Role_Name']))
+        print('\n[Err] Could switch role on acct ' + str(acct_id) + ' for role name '+ str(customer_config['ROLE_NAME']))
         return { 'AccessOK':False }
 
     return {
@@ -46,86 +51,86 @@ def count_resources(service_data, **extra_params):
     if 'region' in extra_params:
         if 'access_key_id' in extra_params['access_data']:
             try:
-                client = boto3.client(service_data["Boto3_Client"], region,
+                client = boto3.client(service_data["BOTO3_CLIENT"], region,
                                       aws_access_key_id=extra_params['access_data']['access_key_id'],
                                       aws_secret_access_key=extra_params['access_data']['secret_access_key'],
                                       aws_session_token=extra_params['access_data']['session_token']
                                       )
             except:
-                print('\n[Err] Could not connect to client '+str(service_data["Boto3_Client"])+" in region "+str(region))
+                print('\n[Err] Could not connect to client '+str(service_data["BOTO3_CLIENT"])+" in region "+str(region))
                 return 0
         else:
             try:
-                client = boto3.client(service_data["Boto3_Client"], region)
+                client = boto3.client(service_data["BOTO3_CLIENT"], region)
             except:
-                print('\n[Err] Could not connect to client '+str(service_data["Boto3_Client"])+" in region "+str(region))
+                print('\n[Err] Could not connect to client '+str(service_data["BOTO3_CLIENT"])+" in region "+str(region))
                 return 0
     else:
         if 'access_key_id' in extra_params['access_data']:
             try:
-                client = boto3.client(service_data["Boto3_Client"],
+                client = boto3.client(service_data["BOTO3_CLIENT"],
                                       aws_access_key_id=extra_params['access_data']['access_key_id'],
                                       aws_secret_access_key=extra_params['access_data']['secret_access_key'],
                                       aws_session_token=extra_params['access_data']['session_token']
                                       )
             except:
-                print('\n[Err] Could not connect to client '+str(service_data["Boto3_Client"]))
+                print('\n[Err] Could not connect to client '+str(service_data["BOTO3_CLIENT"]))
                 return 0
         else:
             try:
-                client = boto3.client(service_data["Boto3_Client"])
+                client = boto3.client(service_data["BOTO3_CLIENT"])
             except:
-                print('\n[Err] Could not connect to client '+str(service_data["Boto3_Client"]))
+                print('\n[Err] Could not connect to client '+str(service_data["BOTO3_CLIENT"]))
                 return 0
 
     filtered_params = ''
-    if 'Client_Prefilters' in service_data:
+    if 'CLIENT_PREFILTERS' in service_data:
         ###########################
         ## TDL
         ## Fazer o loop para dois ou mais params
         ##(Precisa será? Ou melhor tirar a lista do json?)
         ###########################
-        if service_data["Client_Prefilters"][0]["Filter_Type"] == 'String':
-            filtered_params = str(service_data["Client_Prefilters"][0]["Filter_Name"])+" = '"+str(service_data["Client_Prefilters"][0]["Filter_Value"])+"'"
-        elif service_data["Client_Prefilters"][0]["Filter_Type"] == 'List':
-            filtered_params = str(service_data["Client_Prefilters"][0]["Filter_Name"])+" = ['"+str(service_data["Client_Prefilters"][0]["Filter_Value"])+"']"
-        elif service_data["Client_Prefilters"][0]["Filter_Type"] == 'Integer':
-            filtered_params = str(service_data["Client_Prefilters"][0]["Filter_Name"])+" = "+str(service_data["Client_Prefilters"][0]["Filter_Value"])
+        if service_data["CLIENT_PREFILTERS"][0]["filter_Type"] == 'String':
+            filtered_params = str(service_data["CLIENT_PREFILTERS"][0]["filter_Name"])+" = '"+str(service_data["CLIENT_PREFILTERS"][0]["filter_Value"])+"'"
+        elif service_data["CLIENT_PREFILTERS"][0]["filter_Type"] == 'List':
+            filtered_params = str(service_data["CLIENT_PREFILTERS"][0]["filter_Name"])+" = ['"+str(service_data["CLIENT_PREFILTERS"][0]["filter_Value"])+"']"
+        elif service_data["CLIENT_PREFILTERS"][0]["filter_Type"] == 'Integer':
+            filtered_params = str(service_data["CLIENT_PREFILTERS"][0]["filter_Name"])+" = "+str(service_data["CLIENT_PREFILTERS"][0]["filter_Value"])
     if 'nexttoken' in extra_params:
         if filtered_params == '':
             filtered_params = 'NextToken=' + nexttoken
         else:
             filtered_params += ', NextToken=' + nexttoken
     try:
-        response = eval("client."+service_data["Client_Function"]+"("+filtered_params+")")
+        response = eval("client."+service_data["CLIENT_FUNCTION"]+"("+filtered_params+")")
     except:
         if 'region' in extra_params:
-            print('\n[Err] Could not run function '+str("client."+service_data["Client_Function"]+"("+filtered_params+")")+' for client '+str(service_data["Boto3_Client"])+" in region "+str(region))
+            print('\n[Err] Could not run function '+str("client."+service_data["CLIENT_FUNCTION"]+"("+filtered_params+")")+' for client '+str(service_data["BOTO3_CLIENT"])+" in region "+str(region))
         else:
-            print('\n[Err] Could not run function '+str("client."+service_data["Client_Function"]+"("+filtered_params+")")+' for client '+str(service_data["Boto3_Client"]))
+            print('\n[Err] Could not run function '+str("client."+service_data["CLIENT_FUNCTION"]+"("+filtered_params+")")+' for client '+str(service_data["BOTO3_CLIENT"]))
         return 0
 
     try:
-        if response[service_data["Counted_Resource_Key"]]:
+        if response[service_data["COUNTED_RESOURCE_KEY"]]:
             if 'NextToken' in response:
                 if 'region' in extra_params:
-                    return len(response[service_data["Counted_Resource_Key"]]) + count_resources(service_data, region=region, nexttoken=response['NextToken'])
+                    return len(response[service_data["COUNTED_RESOURCE_KEY"]]) + count_resources(service_data, region=region, nexttoken=response['NextToken'])
                 else:
-                    return len(response[service_data["Counted_Resource_Key"]]) + count_resources(service_data, nexttoken=response['NextToken'])
+                    return len(response[service_data["COUNTED_RESOURCE_KEY"]]) + count_resources(service_data, nexttoken=response['NextToken'])
             else:
-                return len(response[service_data["Counted_Resource_Key"]])
+                return len(response[service_data["COUNTED_RESOURCE_KEY"]])
         else:
             return 0
     except KeyError:
         if 'region' in extra_params:
-            print('\n[Err] Could not find key '+service_data["Counted_Resource_Key"]+' for client '+str(service_data["Boto3_Client"])+" in region "+str(region))
+            print('\n[Err] Could not find key '+service_data["COUNTED_RESOURCE_KEY"]+' for client '+str(service_data["BOTO3_CLIENT"])+" in region "+str(region))
         else:
-            print('\n[Err] Could not find key '+service_data["Counted_Resource_Key"]+' for client '+str(service_data["Boto3_Client"]))
+            print('\n[Err] Could not find key '+service_data["COUNTED_RESOURCE_KEY"]+' for client '+str(service_data["BOTO3_CLIENT"]))
         return 0
 
     return 1
 
-service_config_file = open("services_config.json")
+service_config_file = open("services.config.json")
 service_config = json.loads(service_config_file.read())
 service_config_file.close()
 
@@ -149,10 +154,10 @@ for acct_run_id in accts_to_run:
 
         if 'Count' not in service_config["services"][i]: service_config["services"][i]["Count"] = 0
 
-        if service['Client_Endpoint_Scope'] == 'global':
+        if service['CLIENT_ENDPOINT_SCOPE'] == 'global':
             service_config["services"][i]["Count"] += count_resources(service, access_data=temporary_access_data)
         else:
-            for region in customer_config['Assessment_Region_Coverage_List']:
+            for region in customer_config['ASSESSMENT_REGION_COVERAGE_LIST']:
                 if 'Exception_Region_List' in service and region in service["Exception_Region_List"]:
                     continue
                 service_config["services"][i]["Count"] += count_resources(service, access_data=temporary_access_data, region=region)

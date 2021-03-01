@@ -1,0 +1,130 @@
+{
+  "SERVICES": [
+    { "NAME": "AWS Certificate Manager",
+      "BOTO3_CLIENT": "acm",
+      "CLIENT_FUNCTION": "list_certificates",
+      "CLIENT_PREFILTERS": [{"filter_name": "CertificateStatuses", "filter_value": "ISSUED", "filter_type":  "List"}],
+      "COUNTED_RESOURCE_KEY": "CertificateSummaryList",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "ACM Private Certificate Authority",
+      "BOTO3_CLIENT": "acm-pca",
+      "CLIENT_FUNCTION": "list_certificate_authorities",
+      "COUNTED_RESOURCE_KEY": "CertificateAuthorities",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "Alexa For Business",
+      "BOTO3_CLIENT": "alexaforbusiness",
+      "CLIENT_FUNCTION": "list_skills",
+      "CLIENT_PREFILTERS": [{"filter_name": "EnablementType", "filter_value": "ENABLED", "filter_type":  "String"}],
+      "COUNTED_RESOURCE_KEY": "SkillSummaries",
+      "CLIENT_ENDPOINT_SCOPE": "global"
+    },
+    { "NAME": "Amazon Prometheus Service",
+      "BOTO3_CLIENT": "amp",
+      "CLIENT_FUNCTION": "list_workspaces",
+      "COUNTED_RESOURCE_KEY": "workspaces",
+      "CLIENT_ENDPOINT_SCOPE": "regional",
+      "Exception_Region_List": ["sa-east-1"]
+    },
+    { "NAME": "AWS Amplify",
+      "BOTO3_CLIENT": "amplify",
+      "CLIENT_FUNCTION": "list_apps",
+      "COUNTED_RESOURCE_KEY": "apps",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "Amazon Api Gateway",
+      "BOTO3_CLIENT": "apigatewayv2",
+      "CLIENT_FUNCTION": "get_apis",
+      "COUNTED_RESOURCE_KEY": "Items",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "Amazon AppConfig",
+      "BOTO3_CLIENT": "appconfig",
+      "CLIENT_FUNCTION": "list_applications",
+      "COUNTED_RESOURCE_KEY": "Items",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "CloudWatch Application Insights",
+      "BOTO3_CLIENT": "application-insights",
+      "CLIENT_FUNCTION": "list_applications",
+      "COUNTED_RESOURCE_KEY": "ApplicationInfoList",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "AWS App Mesh",
+      "BOTO3_CLIENT": "appmesh",
+      "CLIENT_FUNCTION": "list_meshes",
+      "COUNTED_RESOURCE_KEY": "meshes",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "Amazon AppStream",
+      "BOTO3_CLIENT": "appstream",
+      "CLIENT_FUNCTION": "describe_fleets",
+      "COUNTED_RESOURCE_KEY": "Fleets",
+      "CLIENT_ENDPOINT_SCOPE": "global"
+    },
+    { "NAME": "AWS AppSync",
+      "BOTO3_CLIENT": "appsync",
+      "CLIENT_FUNCTION": "list_graphql_apis",
+      "COUNTED_RESOURCE_KEY": "graphqlApis",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "Amazon Athena",
+      "BOTO3_CLIENT": "athena",
+      "CLIENT_FUNCTION": "list_data_catalogs",
+      "COUNTED_RESOURCE_KEY": "DataCatalogsSummary",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "AWS Backup",
+      "BOTO3_CLIENT": "backup",
+      "CLIENT_FUNCTION": "list_backup_vaults",
+      "COUNTED_RESOURCE_KEY": "BackupVaultList",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "AWS Batch",
+      "BOTO3_CLIENT": "batch",
+      "CLIENT_FUNCTION": "describe_compute_environments",
+      "COUNTED_RESOURCE_KEY": "computeEnvironments",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "Amazon Chime",
+      "BOTO3_CLIENT": "chime",
+      "CLIENT_FUNCTION": "list_accounts",
+      "COUNTED_RESOURCE_KEY": "Accounts",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "AWS Cloud9",
+      "BOTO3_CLIENT": "cloud9",
+      "CLIENT_FUNCTION": "list_environments",
+      "COUNTED_RESOURCE_KEY": "environmentIds",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "Amazon CloudDirectory",
+      "BOTO3_CLIENT": "clouddirectory",
+      "CLIENT_FUNCTION": "list_directories",
+      "CLIENT_PREFILTERS": [{"filter_name": "state", "filter_value": "ENABLED", "filter_type":  "String"}],
+      "COUNTED_RESOURCE_KEY": "Directories",
+      "CLIENT_ENDPOINT_SCOPE": "regional",
+      "Exception_Region_List": ["sa-east-1"]
+    },
+    { "NAME": "AWS CloudFormation",
+      "BOTO3_CLIENT": "cloudformation",
+      "CLIENT_FUNCTION": "list_stacks",
+      "CLIENT_PREFILTERS": [{"filter_name": "StackStatusFilter", "filter_value": "CREATE_COMPLETE", "filter_type":  "List"}],
+      "COUNTED_RESOURCE_KEY": "StackSummaries",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "Amazon CloudFront",
+      "BOTO3_CLIENT": "cloudfront",
+      "CLIENT_FUNCTION": "list_distributions",
+      "COUNTED_RESOURCE_KEY": "DistributionList",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "AWS CloudHSM",
+      "BOTO3_CLIENT": "cloudhsmv2",
+      "CLIENT_FUNCTION": "describe_clusters",
+      "COUNTED_RESOURCE_KEY": "Clusters",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    }
+  ]
+}
