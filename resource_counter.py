@@ -3,7 +3,7 @@ import boto3
 from botocore.exceptions import ClientError
 import json
 
-CUSTOMER_FILE_NAME = "customer_assessment.darede.config.json"
+CUSTOMER_FILE_NAME = "customer_assessment.config.json"
 SERVICES_FILE_NAME = "services.config.json"
 
 def get_customer_config():
@@ -96,7 +96,7 @@ def count_resources(service_data, **extra_params):
             filtered_params = str(service_data["CLIENT_PREFILTERS"][0]["filter_name"])+" = '"+str(service_data["CLIENT_PREFILTERS"][0]["filter_value"])+"'"
         elif service_data["CLIENT_PREFILTERS"][0]["filter_type"] == 'List':
             filtered_params = str(service_data["CLIENT_PREFILTERS"][0]["filter_name"])+" = ['"+str(service_data["CLIENT_PREFILTERS"][0]["filter_value"])+"']"
-        elif service_data["CLIENT_PREFILTERS"][0]["filter_type"] == 'Integer':
+        elif service_data["CLIENT_PREFILTERS"][0]["filter_type"] in ['Integer','Bool']:
             filtered_params = str(service_data["CLIENT_PREFILTERS"][0]["filter_name"])+" = "+str(service_data["CLIENT_PREFILTERS"][0]["filter_value"])
     if 'nexttoken' in extra_params:
         if filtered_params == '':
