@@ -157,7 +157,7 @@ for acct_run_id in accts_to_run:
             service_config["services"][i]["Count"] += count_resources(service, access_data=temporary_access_data)
         else:
             for region in customer_config['ASSESSMENT_REGION_COVERAGE_LIST']:
-                if 'Exception_Region_List' in service and region in service["Exception_Region_List"]:
+                if 'EXCEPTION_REGION_LIST' in service and region in service["EXCEPTION_REGION_LIST"]:
                     continue
                 service_config["services"][i]["Count"] += count_resources(service, access_data=temporary_access_data, region=region)
         i += 1
