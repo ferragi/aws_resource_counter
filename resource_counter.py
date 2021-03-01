@@ -8,6 +8,7 @@ def get_customer_config(){
     customer_file = open("customer_assessment.config.json")
     customer_config = json.loads(customer_file.read())
     customer_file.close()
+    return customer_config
 }
 
 customer_config = get_customer_config()
