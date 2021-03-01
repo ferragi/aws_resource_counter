@@ -3,8 +3,11 @@ import boto3
 from botocore.exceptions import ClientError
 import json
 
+CUSTOMER_FILE_NAME = "customer_assessment.config.json"
+SERVICES_FILE_NAME = "services.config.json"
+
 def get_customer_config():
-    customer_file = open("customer_assessment.config.json")
+    customer_file = open(CUSTOMER_FILE_NAME)
     customer_config = json.loads(customer_file.read())
     customer_file.close()
     return customer_config
@@ -89,12 +92,12 @@ def count_resources(service_data, **extra_params):
         ## Fazer o loop para dois ou mais params
         ##(Precisa será? Ou melhor tirar a lista do json?)
         ###########################
-        if service_data["CLIENT_PREFILTERS"][0]["filter_Type"] == 'String':
-            filtered_params = str(service_data["CLIENT_PREFILTERS"][0]["filter_Name"])+" = '"+str(service_data["CLIENT_PREFILTERS"][0]["filter_Value"])+"'"
-        elif service_data["CLIENT_PREFILTERS"][0]["filter_Type"] == 'List':
-            filtered_params = str(service_data["CLIENT_PREFILTERS"][0]["filter_Name"])+" = ['"+str(service_data["CLIENT_PREFILTERS"][0]["filter_Value"])+"']"
-        elif service_data["CLIENT_PREFILTERS"][0]["filter_Type"] == 'Integer':
-            filtered_params = str(service_data["CLIENT_PREFILTERS"][0]["filter_Name"])+" = "+str(service_data["CLIENT_PREFILTERS"][0]["filter_Value"])
+        if service_data["CLIENT_PREFILTERS"][0]["filter_type"] == 'String':
+            filtered_params = str(service_data["CLIENT_PREFILTERS"][0]["filter_name"])+" = '"+str(service_data["CLIENT_PREFILTERS"][0]["filter_value"])+"'"
+        elif service_data["CLIENT_PREFILTERS"][0]["filter_type"] == 'List':
+            filtered_params = str(service_data["CLIENT_PREFILTERS"][0]["filter_name"])+" = ['"+str(service_data["CLIENT_PREFILTERS"][0]["filter_value"])+"']"
+        elif service_data["CLIENT_PREFILTERS"][0]["filter_type"] == 'Integer':
+            filtered_params = str(service_data["CLIENT_PREFILTERS"][0]["filter_name"])+" = "+str(service_data["CLIENT_PREFILTERS"][0]["filter_value"])
     if 'nexttoken' in extra_params:
         if filtered_params == '':
             filtered_params = 'NextToken=' + nexttoken
@@ -129,7 +132,7 @@ def count_resources(service_data, **extra_params):
 
     return 1
 
-service_config_file = open("services.config.json")
+service_config_file = open(SERVICES_FILE_NAME)
 service_config = json.loads(service_config_file.read())
 service_config_file.close()
 
@@ -148,18 +151,18 @@ for acct_run_id in accts_to_run:
         continue
 
     i = 0
-    for service in service_config["services"]:
+    for service in service_config["SERVICES"]:
         print('.', end='')
 
-        if 'Count' not in service_config["services"][i]: service_config["services"][i]["Count"] = 0
+        if 'Count' not in service_config["SERVICES"][i]: service_config["SERVICES"][i]["Count"] = 0
 
         if service['CLIENT_ENDPOINT_SCOPE'] == 'global':
-            service_config["services"][i]["Count"] += count_resources(service, access_data=temporary_access_data)
+            service_config["SERVICES"][i]["Count"] += count_resources(service, access_data=temporary_access_data)
         else:
             for region in customer_config['ASSESSMENT_REGION_COVERAGE_LIST']:
                 if 'EXCEPTION_REGION_LIST' in service and region in service["EXCEPTION_REGION_LIST"]:
                     continue
-                service_config["services"][i]["Count"] += count_resources(service, access_data=temporary_access_data, region=region)
+                service_config["SERVICES"][i]["Count"] += count_resources(service, access_data=temporary_access_data, region=region)
         i += 1
 
     print(".[ok]")
