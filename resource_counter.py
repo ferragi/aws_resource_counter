@@ -130,8 +130,6 @@ def count_resources(service_data, **extra_params):
             print('\n[Err] Could not find key '+service_data["COUNTED_RESOURCE_KEY"]+' for client '+str(service_data["BOTO3_CLIENT"]))
         return 0
 
-    return 1
-
 service_config_file = open(SERVICES_FILE_NAME)
 service_config = json.loads(service_config_file.read())
 service_config_file.close()
