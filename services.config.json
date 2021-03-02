@@ -463,7 +463,7 @@
       "BOTO3_CLIENT": "iam",
       "CLIENT_FUNCTION": "list_users",
       "COUNTED_RESOURCE_KEY": "Users",
-      "CLIENT_ENDPOINT_SCOPE": "regional"
+      "CLIENT_ENDPOINT_SCOPE": "global"
     },
     { "NAME": "EC2 Image Builder",
       "BOTO3_CLIENT": "imagebuilder",
@@ -504,11 +504,110 @@
       "COUNTED_RESOURCE_KEY": "StreamNames",
       "CLIENT_ENDPOINT_SCOPE": "regional"
     },
-    { "NAME": "AWS Key Management Service",
-      "BOTO3_CLIENT": "kms",
-      "CLIENT_FUNCTION": "list_keys",
-      "COUNTED_RESOURCE_KEY": "Keys",
+    { "NAME": "AWS Lake Formation",
+      "BOTO3_CLIENT": "lakeformation",
+      "CLIENT_FUNCTION": "list_resources",
+      "COUNTED_RESOURCE_KEY": "ResourceInfoList",
       "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "AWS Lambda",
+      "BOTO3_CLIENT": "lambda",
+      "CLIENT_FUNCTION": "list_functions",
+      "COUNTED_RESOURCE_KEY": "Functions",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "Amazon Lex Model Building Service",
+      "BOTO3_CLIENT": "lexv2-models",
+      "CLIENT_FUNCTION": "list_bots",
+      "COUNTED_RESOURCE_KEY": "botSummaries",
+      "CLIENT_ENDPOINT_SCOPE": "regional",
+      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+    },
+    { "NAME": "Amazon Lightsail",
+      "BOTO3_CLIENT": "lightsail",
+      "CLIENT_FUNCTION": "get_instances",
+      "COUNTED_RESOURCE_KEY": "instances",
+      "CLIENT_ENDPOINT_SCOPE": "regional",
+      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+    },
+    { "NAME": "Amazon CloudWatch Logs",
+      "BOTO3_CLIENT": "logs",
+      "CLIENT_FUNCTION": "describe_log_groups",
+      "COUNTED_RESOURCE_KEY": "logGroups",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "Amazon Lookout for Vision",
+      "BOTO3_CLIENT": "lookoutvision",
+      "CLIENT_FUNCTION": "list_projects",
+      "COUNTED_RESOURCE_KEY": "Projects",
+      "CLIENT_ENDPOINT_SCOPE": "regional",
+      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+    },
+    { "NAME": "Amazon Managed Blockchain",
+      "BOTO3_CLIENT": "managedblockchain",
+      "CLIENT_FUNCTION": "list_networks",
+      "CLIENT_PREFILTERS": [{"filter_name": "Status", "filter_value": "AVAILABLE", "filter_type":  "String"}],
+      "COUNTED_RESOURCE_KEY": "Networks",
+      "CLIENT_ENDPOINT_SCOPE": "regional",
+      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+    },
+    { "NAME": "AWS Elemental MediaConnect",
+      "BOTO3_CLIENT": "mediaconnect",
+      "CLIENT_FUNCTION": "list_flows",
+      "COUNTED_RESOURCE_KEY": "Flows",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "AWS Elemental MediaLive",
+      "BOTO3_CLIENT": "medialive",
+      "CLIENT_FUNCTION": "list_inputs",
+      "COUNTED_RESOURCE_KEY": "Inputs",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "AWS Elemental MediaPackage",
+      "BOTO3_CLIENT": "mediapackage",
+      "CLIENT_FUNCTION": "list_channels",
+      "COUNTED_RESOURCE_KEY": "Channels",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "AWS Elemental MediaStore",
+      "BOTO3_CLIENT": "mediastore",
+      "CLIENT_FUNCTION": "list_containers",
+      "COUNTED_RESOURCE_KEY": "Containers",
+      "CLIENT_ENDPOINT_SCOPE": "regional",
+      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+    },
+    { "NAME": "AWS Mobile Service",
+      "BOTO3_CLIENT": "mobile",
+      "CLIENT_FUNCTION": "list_projects",
+      "COUNTED_RESOURCE_KEY": "projects",
+      "CLIENT_ENDPOINT_SCOPE": "regional",
+      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+    },
+    { "NAME": "AmazonMQ",
+      "BOTO3_CLIENT": "mq",
+      "CLIENT_FUNCTION": "list_brokers",
+      "COUNTED_RESOURCE_KEY": "BrokerSummaries",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "Amazon Managed Workflows for Apache Airflow",
+      "BOTO3_CLIENT": "mwaa",
+      "CLIENT_FUNCTION": "list_environments",
+      "COUNTED_RESOURCE_KEY": "Environments",
+      "CLIENT_ENDPOINT_SCOPE": "regional",
+      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+    },
+    { "NAME": "Amazon Neptune",
+      "BOTO3_CLIENT": "neptune",
+      "CLIENT_FUNCTION": "describe_db_clusters",
+      "COUNTED_RESOURCE_KEY": "DBClusters",
+      "CLIENT_ENDPOINT_SCOPE": "regional"
+    },
+    { "NAME": "WS Network Firewall",
+      "BOTO3_CLIENT": "network-firewall",
+      "CLIENT_FUNCTION": "list_firewalls",
+      "COUNTED_RESOURCE_KEY": "Firewalls",
+      "CLIENT_ENDPOINT_SCOPE": "regional",
+      "EXCEPTION_REGION_LIST": ["sa-east-1"]
     }
   ]
 }
