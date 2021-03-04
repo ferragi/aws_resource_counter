@@ -2,6 +2,7 @@ import sys
 import boto3
 from botocore.exceptions import ClientError
 import json
+from datetime import datetime
 
 CUSTOMER_FILE_NAME = "customer_assessment.config.json"
 SERVICES_FILE_NAME = "services.config.json"
@@ -100,9 +101,9 @@ def count_resources(service_data, **extra_params):
             filtered_params = str(service_data["CLIENT_PREFILTERS"][0]["filter_name"])+" = "+str(service_data["CLIENT_PREFILTERS"][0]["filter_value"])
     if 'nexttoken' in extra_params:
         if filtered_params == '':
-            filtered_params = 'NextToken=' + nexttoken
+            filtered_params = 'NextToken=' + extra_params['nexttoken']
         else:
-            filtered_params += ', NextToken=' + nexttoken
+            filtered_params += ', NextToken=' + extra_params['nexttoken']
     try:
         response = eval("client."+service_data["CLIENT_FUNCTION"]+"("+filtered_params+")")
     except:
@@ -130,6 +131,43 @@ def count_resources(service_data, **extra_params):
             print('\n[Err] Could not find key '+service_data["COUNTED_RESOURCE_KEY"]+' for client '+str(service_data["BOTO3_CLIENT"]))
         return 0
 
+def save_json_file(json_content):
+
+    dt_string = datetime.now().strftime("%d%m%Y%H%M%S")
+    filename = "assessment."+str(customer_config['CUSTOMER_ORGANIZATION_ACCT'])+"."+dt_string+".json"
+
+    try:
+        with open(filename, 'w+') as json_output_file:
+            json.dump(json_content, json_output_file, indent=4, sort_keys=True)
+        print("Output JSON file "+filename+" saved. [ok]")
+    except:
+        print('\n[Err] Could not write JSON file ' +filename)
+
+def save_csv_file(json_content):
+
+    dt_string = datetime.now().strftime("%d%m%Y%H%M%S")
+
+    filename = "assessment." + str(customer_config['CUSTOMER_ORGANIZATION_ACCT']) + "." + dt_string + ".csv"
+
+    try:
+        with open(filename, 'w+') as csv_output_file:
+            csv_output_file.write("'Service Name';'Counted Resource';'AWS_Acct_Id';'Region';'#Counted'\n")
+            for service in json_content["SERVICES"]:
+                for counted_account in service['Count']:
+                    if service['CLIENT_ENDPOINT_SCOPE'] == 'global':
+                        csv_output_file.write(
+                            "'" + str(service['NAME']) + "';'" + str(service['COUNTED_RESOURCE_KEY']) + "';'" + str(
+                                counted_account) + "';'global';" + str(service['Count'][counted_account]['global'])+"\n")
+                    else:
+                        for region in service['Count'][counted_account]:
+                            csv_output_file.write(
+                                "'" + str(service['NAME']) + "';'" + str(service['COUNTED_RESOURCE_KEY']) + "';'" + str(
+                                    counted_account) + "';'" + str(region) + "';" + str(
+                                    service['Count'][counted_account][region]) + "\n")
+        print("Output CSV file "+filename+" saved. [ok]")
+    except:
+        print('\n[Err] Could not write CSV file ' +filename)
+
 service_config_file = open(SERVICES_FILE_NAME)
 service_config = json.loads(service_config_file.read())
 service_config_file.close()
@@ -142,27 +180,30 @@ for acct_run_id in accts_to_run:
     else:
         temporary_access_data = { 'AccessOK': True }
 
-    print('Checking resources on account ['+acct_run_id+'].', end='')
+    print('Checking resources on account ['+acct_run_id+'].')
 
     if not temporary_access_data['AccessOK']:
-        print(".[skipped]")
+        print("[skipped]")
         continue
 
     i = 0
     for service in service_config["SERVICES"]:
-        print('.', end='')
 
-        if 'Count' not in service_config["SERVICES"][i]: service_config["SERVICES"][i]["Count"] = 0
+        if 'Count' not in service_config["SERVICES"][i]: service_config["SERVICES"][i]["Count"] = {}
+
+        if acct_run_id not in service_config["SERVICES"][i]["Count"]: service_config["SERVICES"][i]["Count"][acct_run_id] = {}
 
         if service['CLIENT_ENDPOINT_SCOPE'] == 'global':
-            service_config["SERVICES"][i]["Count"] += count_resources(service, access_data=temporary_access_data)
+            service_config["SERVICES"][i]["Count"][acct_run_id]['global'] = count_resources(service, access_data=temporary_access_data)
         else:
             for region in customer_config['ASSESSMENT_REGION_COVERAGE_LIST']:
                 if 'EXCEPTION_REGION_LIST' in service and region in service["EXCEPTION_REGION_LIST"]:
                     continue
-                service_config["SERVICES"][i]["Count"] += count_resources(service, access_data=temporary_access_data, region=region)
+                service_config["SERVICES"][i]["Count"][acct_run_id][region] = count_resources(service, access_data=temporary_access_data, region=region)
         i += 1
 
     print(".[ok]")
 
-print(json.dumps(service_config, indent=4, sort_keys=True))
+save_json_file(service_config)
+save_csv_file(service_config)
+#print(json.dumps(service_config, indent=4, sort_keys=True))
