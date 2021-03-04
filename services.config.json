@@ -25,7 +25,7 @@
       "CLIENT_FUNCTION": "list_workspaces",
       "COUNTED_RESOURCE_KEY": "workspaces",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "AWS Amplify",
       "BOTO3_CLIENT": "amplify",
@@ -105,7 +105,7 @@
       "CLIENT_PREFILTERS": [{"filter_name": "state", "filter_value": "ENABLED", "filter_type":  "String"}],
       "COUNTED_RESOURCE_KEY": "Directories",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-3"]
     },
     { "NAME": "AWS CloudFormation",
       "BOTO3_CLIENT": "cloudformation",
@@ -131,7 +131,7 @@
       "CLIENT_FUNCTION": "list_domain_names",
       "COUNTED_RESOURCE_KEY": "DomainNames",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["us-east-2"]
+      "EXCEPTION_REGION_LIST": ["us-east-2", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "AWS CloudTrail",
       "BOTO3_CLIENT": "cloudtrail",
@@ -150,7 +150,7 @@
       "CLIENT_FUNCTION": "list_repositories",
       "COUNTED_RESOURCE_KEY": "repositories",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "AWS CodeBuild",
       "BOTO3_CLIENT": "codebuild",
@@ -176,7 +176,7 @@
       "CLIENT_PREFILTERS": [{"filter_name": "States", "filter_value": "Associated", "filter_type":  "List"}],
       "COUNTED_RESOURCE_KEY": "RepositoryAssociationSummaries",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-3"]
     },
     { "NAME": "Amazon CodeGuru Profiler",
       "BOTO3_CLIENT": "codeguruprofiler",
@@ -184,7 +184,7 @@
       "CLIENT_PREFILTERS": [{"filter_name": "includeDescription", "filter_value": "False", "filter_type":  "Bool"}],
       "COUNTED_RESOURCE_KEY": "profilingGroupNames",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-3"]
     },
     { "NAME": "AWS CodePipeline",
       "BOTO3_CLIENT": "codepipeline",
@@ -197,21 +197,21 @@
       "CLIENT_FUNCTION": "list_projects",
       "COUNTED_RESOURCE_KEY": "projects",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "eu-west-3"]
     },
     { "NAME": "Amazon Comprehend",
       "BOTO3_CLIENT": "comprehend",
       "CLIENT_FUNCTION": "list_endpoints",
       "COUNTED_RESOURCE_KEY": "EndpointPropertiesList",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-3"]
     },
     { "NAME": "Amazon Connect Service",
       "BOTO3_CLIENT": "connect",
       "CLIENT_FUNCTION": "list_instances",
       "COUNTED_RESOURCE_KEY": "InstanceSummaryList",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-east-2"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-east-2", "us-west-1", "eu-west-1", "eu-west-3"]
     },
     { "NAME": "AWS Glue DataBrew",
       "BOTO3_CLIENT": "databrew",
@@ -224,14 +224,14 @@
       "CLIENT_FUNCTION": "list_data_sets",
       "COUNTED_RESOURCE_KEY": "DataSets",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "eu-west-3"]
     },
     { "NAME": "AWS Data Pipeline",
       "BOTO3_CLIENT": "datapipeline",
       "CLIENT_FUNCTION": "list_pipelines",
       "COUNTED_RESOURCE_KEY": "pipelineIdList",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-east-2"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-east-2", "us-west-1", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "AWS DataSync",
       "BOTO3_CLIENT": "datasync",
@@ -347,7 +347,7 @@
       "CLIENT_FUNCTION": "describe_accelerators",
       "COUNTED_RESOURCE_KEY": "acceleratorSet",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-3"]
     },
     { "NAME": "Amazon ElastiCache",
       "BOTO3_CLIENT": "elasticache",
@@ -367,7 +367,7 @@
       "CLIENT_FUNCTION": "list_pipelines",
       "COUNTED_RESOURCE_KEY": "Pipelines",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-east-2", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "AWS Elastic Load Balancing",
       "BOTO3_CLIENT": "elbv2",
@@ -388,7 +388,7 @@
       "CLIENT_PREFILTERS": [{"filter_name": "states", "filter_value": "RUNNING", "filter_type":  "List"}],
       "COUNTED_RESOURCE_KEY": "virtualClusters",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "eu-west-3"]
     },
     { "NAME": "Amazon Elasticsearch Service",
       "BOTO3_CLIENT": "es",
@@ -413,14 +413,14 @@
       "CLIENT_FUNCTION": "list_forecasts",
       "COUNTED_RESOURCE_KEY": "Forecasts",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "Amazon Fraud Detector",
       "BOTO3_CLIENT": "frauddetector",
       "CLIENT_FUNCTION": "get_models",
       "COUNTED_RESOURCE_KEY": "models",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "Amazon FSx",
       "BOTO3_CLIENT": "fsx",
@@ -432,7 +432,8 @@
       "BOTO3_CLIENT": "gamelift",
       "CLIENT_FUNCTION": "list_game_server_groups",
       "COUNTED_RESOURCE_KEY": "GameServerGroups",
-      "CLIENT_ENDPOINT_SCOPE": "regional"
+      "CLIENT_ENDPOINT_SCOPE": "regional",
+      "EXCEPTION_REGION_LIST": ["eu-west-3"]
     },
     { "NAME": "Amazon S3 Glacier",
       "BOTO3_CLIENT": "glacier",
@@ -451,7 +452,7 @@
       "CLIENT_FUNCTION": "list_deployments",
       "COUNTED_RESOURCE_KEY": "deployments",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-3"]
     },
     { "NAME": "Amazon GuardDuty",
       "BOTO3_CLIENT": "guardduty",
@@ -477,7 +478,7 @@
       "CLIENT_FUNCTION": "list_assessment_targets",
       "COUNTED_RESOURCE_KEY": "assessmentTargetArns",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "eu-west-3"]
     },
     { "NAME": "AWS IoT",
       "BOTO3_CLIENT": "iot",
@@ -496,7 +497,7 @@
       "CLIENT_FUNCTION": "list_indices",
       "COUNTED_RESOURCE_KEY": "IndexConfigurationSummaryItems",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-east-2", "us-west-1", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "Amazon Kinesis Data Streams",
       "BOTO3_CLIENT": "kinesis",
@@ -521,14 +522,14 @@
       "CLIENT_FUNCTION": "list_bots",
       "COUNTED_RESOURCE_KEY": "botSummaries",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-east-2", "us-west-1", "eu-west-3"]
     },
     { "NAME": "Amazon Lightsail",
       "BOTO3_CLIENT": "lightsail",
       "CLIENT_FUNCTION": "get_instances",
       "COUNTED_RESOURCE_KEY": "instances",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1"]
     },
     { "NAME": "Amazon CloudWatch Logs",
       "BOTO3_CLIENT": "logs",
@@ -541,7 +542,7 @@
       "CLIENT_FUNCTION": "list_projects",
       "COUNTED_RESOURCE_KEY": "Projects",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "Amazon Managed Blockchain",
       "BOTO3_CLIENT": "managedblockchain",
@@ -549,7 +550,7 @@
       "CLIENT_PREFILTERS": [{"filter_name": "Status", "filter_value": "AVAILABLE", "filter_type":  "String"}],
       "COUNTED_RESOURCE_KEY": "Networks",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-east-2", "us-west-1", "us-west-2", "eu-west-3"]
     },
     { "NAME": "AWS Elemental MediaConnect",
       "BOTO3_CLIENT": "mediaconnect",
@@ -561,27 +562,29 @@
       "BOTO3_CLIENT": "medialive",
       "CLIENT_FUNCTION": "list_inputs",
       "COUNTED_RESOURCE_KEY": "Inputs",
-      "CLIENT_ENDPOINT_SCOPE": "regional"
+      "CLIENT_ENDPOINT_SCOPE": "regional",
+      "EXCEPTION_REGION_LIST": ["us-west-1"]
     },
     { "NAME": "AWS Elemental MediaPackage",
       "BOTO3_CLIENT": "mediapackage",
       "CLIENT_FUNCTION": "list_channels",
       "COUNTED_RESOURCE_KEY": "Channels",
-      "CLIENT_ENDPOINT_SCOPE": "regional"
+      "CLIENT_ENDPOINT_SCOPE": "regional",
+      "EXCEPTION_REGION_LIST": ["us-east-2"]
     },
     { "NAME": "AWS Elemental MediaStore",
       "BOTO3_CLIENT": "mediastore",
       "CLIENT_FUNCTION": "list_containers",
       "COUNTED_RESOURCE_KEY": "Containers",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-east-2", "us-west-1", "eu-west-3"]
     },
     { "NAME": "AWS Mobile Service",
       "BOTO3_CLIENT": "mobile",
       "CLIENT_FUNCTION": "list_projects",
       "COUNTED_RESOURCE_KEY": "projects",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-east-2", "us-west-1", "us-west-2", "eu-west-1", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "AmazonMQ",
       "BOTO3_CLIENT": "mq",
@@ -594,7 +597,7 @@
       "CLIENT_FUNCTION": "list_environments",
       "COUNTED_RESOURCE_KEY": "Environments",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "Amazon Neptune",
       "BOTO3_CLIENT": "neptune",
@@ -607,7 +610,7 @@
       "CLIENT_FUNCTION": "list_firewalls",
       "COUNTED_RESOURCE_KEY": "Firewalls",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-east-2", "us-west-1", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "AWS OpsWorks Stacks",
       "BOTO3_CLIENT": "opsworks",
@@ -626,21 +629,21 @@
       "CLIENT_FUNCTION": "list_datasets",
       "COUNTED_RESOURCE_KEY": "datasets",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "Amazon Pinpoint",
       "BOTO3_CLIENT": "pinpoint",
       "CLIENT_FUNCTION": "get_apps",
       "COUNTED_RESOURCE_KEY": "ApplicationsResponse",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-east-2", "us-west-1", "eu-west-3"]
     },
     { "NAME": "Amazon QLDB",
       "BOTO3_CLIENT": "qldb",
       "CLIENT_FUNCTION": "list_ledgers",
       "COUNTED_RESOURCE_KEY": "Ledgers",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "AWS Resource Access Manager",
       "BOTO3_CLIENT": "ram",
@@ -666,14 +669,14 @@
       "CLIENT_FUNCTION": "describe_projects",
       "COUNTED_RESOURCE_KEY": "ProjectDescriptions",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "AWS RoboMaker",
       "BOTO3_CLIENT": "robomaker",
       "CLIENT_FUNCTION": "list_robots",
       "COUNTED_RESOURCE_KEY": "robots",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "Amazon Route 53",
       "BOTO3_CLIENT": "route53",
@@ -728,7 +731,7 @@
       "CLIENT_FUNCTION": "list_queues",
       "COUNTED_RESOURCE_KEY": "QueueUrls",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-east-2", "us-west-1", "us-west-2", "eu-west-1", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "AWS Step Functions",
       "BOTO3_CLIENT": "stepfunctions",
@@ -774,13 +777,14 @@
       "CLIENT_FUNCTION": "list_organizations",
       "COUNTED_RESOURCE_KEY": "OrganizationSummaries",
       "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1"]
+      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-east-2", "us-west-1", "eu-west-2", "eu-west-3"]
     },
     { "NAME": "Amazon WorkSpaces",
       "BOTO3_CLIENT": "workspaces",
       "CLIENT_FUNCTION": "describe_workspaces",
       "COUNTED_RESOURCE_KEY": "Workspaces",
-      "CLIENT_ENDPOINT_SCOPE": "regional"
+      "CLIENT_ENDPOINT_SCOPE": "regional",
+      "EXCEPTION_REGION_LIST": ["us-east-2", "us-west-1", "eu-west-2", "eu-west-3"]
     }
   ]
 }
