@@ -154,16 +154,17 @@ def save_csv_file(json_content):
             csv_output_file.write("'Service Name';'Counted Resource';'AWS_Acct_Id';'Region';'#Counted'\n")
             for service in json_content["SERVICES"]:
                 for counted_account in service['Count']:
-                    if service['CLIENT_ENDPOINT_SCOPE'] == 'global':
-                        csv_output_file.write(
-                            "'" + str(service['NAME']) + "';'" + str(service['COUNTED_RESOURCE_KEY']) + "';'" + str(
-                                counted_account) + "';'global';" + str(service['Count'][counted_account]['global'])+"\n")
-                    else:
-                        for region in service['Count'][counted_account]:
+                    if counted_account != 'Subtotal':
+                        if service['CLIENT_ENDPOINT_SCOPE'] == 'global':
                             csv_output_file.write(
                                 "'" + str(service['NAME']) + "';'" + str(service['COUNTED_RESOURCE_KEY']) + "';'" + str(
-                                    counted_account) + "';'" + str(region) + "';" + str(
-                                    service['Count'][counted_account][region]) + "\n")
+                                    counted_account) + "';'global';" + str(service['Count'][counted_account]['global'])+"\n")
+                        else:
+                            for region in service['Count'][counted_account]:
+                                csv_output_file.write(
+                                    "'" + str(service['NAME']) + "';'" + str(service['COUNTED_RESOURCE_KEY']) + "';'" + str(
+                                        counted_account) + "';'" + str(region) + "';" + str(
+                                        service['Count'][counted_account][region]) + "\n")
         print("Output CSV file "+filename+" saved. [ok]")
     except:
         print('\n[Err] Could not write CSV file ' +filename)
@@ -173,6 +174,7 @@ service_config = json.loads(service_config_file.read())
 service_config_file.close()
 
 accts_to_run = generate_account_list()
+total_counted = 0
 
 for acct_run_id in accts_to_run:
     if acct_run_id != boto3.client('sts').get_caller_identity().get('Account'):
@@ -193,17 +195,25 @@ for acct_run_id in accts_to_run:
 
         if acct_run_id not in service_config["SERVICES"][i]["Count"]: service_config["SERVICES"][i]["Count"][acct_run_id] = {}
 
+        if 'Subtotal' not in service_config["SERVICES"][i]["Count"]: service_config["SERVICES"][i]["Count"]['Subtotal'] = 0
+
         if service['CLIENT_ENDPOINT_SCOPE'] == 'global':
             service_config["SERVICES"][i]["Count"][acct_run_id]['global'] = count_resources(service, access_data=temporary_access_data)
+            service_config["SERVICES"][i]["Count"]['Subtotal'] += service_config["SERVICES"][i]["Count"][acct_run_id]['global']
         else:
             for region in customer_config['ASSESSMENT_REGION_COVERAGE_LIST']:
                 if 'EXCEPTION_REGION_LIST' in service and region in service["EXCEPTION_REGION_LIST"]:
                     continue
                 service_config["SERVICES"][i]["Count"][acct_run_id][region] = count_resources(service, access_data=temporary_access_data, region=region)
+                service_config["SERVICES"][i]["Count"]['Subtotal'] += service_config["SERVICES"][i]["Count"][acct_run_id][region]
+
+        total_counted += service_config["SERVICES"][i]["Count"]['Subtotal']
+
         i += 1
 
     print(".[ok]")
 
+service_config["Total"] = total_counted
 save_json_file(service_config)
 save_csv_file(service_config)
-#print(json.dumps(service_config, indent=4, sort_keys=True))
+print("Total Services: "+str(total_counted))
