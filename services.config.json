@@ -73,7 +73,7 @@
       "BOTO3_CLIENT": "athena",
       "CLIENT_FUNCTION": "list_data_catalogs",
       "COUNTED_RESOURCE_KEY": "DataCatalogsSummary",
-      "CLIENT_ENDPOINT_SCOPE": "regional"
+      "CLIENT_ENDPOINT_SCOPE": "global"
     },
     { "NAME": "AWS Backup",
       "BOTO3_CLIENT": "backup",
@@ -91,7 +91,7 @@
       "BOTO3_CLIENT": "chime",
       "CLIENT_FUNCTION": "list_accounts",
       "COUNTED_RESOURCE_KEY": "Accounts",
-      "CLIENT_ENDPOINT_SCOPE": "regional"
+      "CLIENT_ENDPOINT_SCOPE": "global"
     },
     { "NAME": "AWS Cloud9",
       "BOTO3_CLIENT": "cloud9",
@@ -118,7 +118,7 @@
       "BOTO3_CLIENT": "cloudfront",
       "CLIENT_FUNCTION": "list_distributions",
       "COUNTED_RESOURCE_KEY": "DistributionList",
-      "CLIENT_ENDPOINT_SCOPE": "regional"
+      "CLIENT_ENDPOINT_SCOPE": "global"
     },
     { "NAME": "AWS CloudHSM",
       "BOTO3_CLIENT": "cloudhsmv2",
@@ -137,13 +137,13 @@
       "BOTO3_CLIENT": "cloudtrail",
       "CLIENT_FUNCTION": "list_trails",
       "COUNTED_RESOURCE_KEY": "Trails",
-      "CLIENT_ENDPOINT_SCOPE": "regional"
+      "CLIENT_ENDPOINT_SCOPE": "global"
     },
     { "NAME": "Amazon CloudWatch",
       "BOTO3_CLIENT": "cloudwatch",
       "CLIENT_FUNCTION": "list_dashboards",
       "COUNTED_RESOURCE_KEY": "DashboardEntries",
-      "CLIENT_ENDPOINT_SCOPE": "regional"
+      "CLIENT_ENDPOINT_SCOPE": "global"
     },
     { "NAME": "AWS CodeArtifact",
       "BOTO3_CLIENT": "codeartifact",
@@ -631,13 +631,6 @@
       "CLIENT_ENDPOINT_SCOPE": "regional",
       "EXCEPTION_REGION_LIST": ["sa-east-1", "us-west-1", "eu-west-2", "eu-west-3"]
     },
-    { "NAME": "Amazon Pinpoint",
-      "BOTO3_CLIENT": "pinpoint",
-      "CLIENT_FUNCTION": "get_apps",
-      "COUNTED_RESOURCE_KEY": "ApplicationsResponse",
-      "CLIENT_ENDPOINT_SCOPE": "regional",
-      "EXCEPTION_REGION_LIST": ["sa-east-1", "us-east-2", "us-west-1", "eu-west-3"]
-    },
     { "NAME": "Amazon QLDB",
       "BOTO3_CLIENT": "qldb",
       "CLIENT_FUNCTION": "list_ledgers",
@@ -682,13 +675,13 @@
       "BOTO3_CLIENT": "route53",
       "CLIENT_FUNCTION": "list_hosted_zones",
       "COUNTED_RESOURCE_KEY": "HostedZones",
-      "CLIENT_ENDPOINT_SCOPE": "regional"
+      "CLIENT_ENDPOINT_SCOPE": "global"
     },
     { "NAME": "Amazon Simple Storage Service",
       "BOTO3_CLIENT": "s3",
       "CLIENT_FUNCTION": "list_buckets",
       "COUNTED_RESOURCE_KEY": "Buckets",
-      "CLIENT_ENDPOINT_SCOPE": "regional"
+      "CLIENT_ENDPOINT_SCOPE": "global"
     },
     { "NAME": "Amazon SageMaker Service",
       "BOTO3_CLIENT": "sagemaker",
