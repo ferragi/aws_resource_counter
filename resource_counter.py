@@ -38,8 +38,9 @@ def switch_role(acct_id):
             RoleArn='arn:aws:iam::' + str(acct_id) + ':role/' + str(customer_config['ROLE_NAME']),
             RoleSessionName=str(customer_config['ROLE_NAME']) + '-Resource_Counter'
         )
-    except ClientError:
+    except ClientError as err:
         print('\n[Err] Could switch role on acct ' + str(acct_id) + ' for role name '+ str(customer_config['ROLE_NAME']))
+        print('\n[Dbg] '+str(err))
         return { 'AccessOK':False }
 
     return {
