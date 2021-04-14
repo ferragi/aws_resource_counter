@@ -1,10 +1,12 @@
+# -*- coding: utf-8 -*-
+
 import sys
 import boto3
 from botocore.exceptions import ClientError
 import json
 from datetime import datetime
 
-CUSTOMER_FILE_NAME = "customer_assessment.config.json"
+CUSTOMER_FILE_NAME = "customer_assessment.yandeh.config.json"
 SERVICES_FILE_NAME = "services.config.json"
 
 def get_customer_config():
